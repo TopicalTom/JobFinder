@@ -15,7 +15,7 @@ const RootStack = () => {
 
     return (
         <NavigationContainer>
-            <Root.Navigator initialRouteName="Welcome">
+            <Root.Navigator initialRouteName="Main">
                 <Root.Screen 
                     name="Welcome" 
                     component={WelcomeScreen} 

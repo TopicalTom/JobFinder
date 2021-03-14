@@ -3,11 +3,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements';
 
 // Stacks
-import DeckStack from '../stacks/DeckStack';
+import ReviewStack from '../stacks/ReviewStack';
 
 // Screens
 import MapScreen from '../screens/MapScreen';
-import ReviewScreen from '../screens/ReviewScreen';
+import DeckScreen from '../screens/DeckScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +36,7 @@ const MainStack = () => {
             />
             <Tab.Screen 
                 name="Deck" 
-                component={DeckStack} 
+                component={DeckScreen} 
                 options={() => ({ 
                     headerShown: false,
                     tabBarLabel: 'Deck',
@@ -52,9 +52,9 @@ const MainStack = () => {
             />
             <Tab.Screen 
                 name="Review" 
-                component={ReviewScreen} 
+                component={ReviewStack} 
                 options={() => ({ 
-                    headerShown: false,
+                    headerShown: true,
                     tabBarLabel: 'Review',
                     tabBarIcon: () => (
                         <Icon 
