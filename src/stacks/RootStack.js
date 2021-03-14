@@ -21,6 +21,7 @@ const RootStack = () => {
                     component={WelcomeScreen} 
                     options={() => ({ 
                         headerShown: false,
+                        tabBarVisible: false
                     })}
                 />
                 <Root.Screen 
@@ -28,6 +29,7 @@ const RootStack = () => {
                     component={AuthScreen} 
                     options={() => ({ 
                         headerShown: false,
+                        tabBarVisible: false
                     })}
                 />
                 <Root.Screen 
@@ -35,6 +37,7 @@ const RootStack = () => {
                     component={MainStack} 
                     options={() => ({ 
                         headerShown: false,
+                        //tabBarVisible: false
                     })}
                 />
             </Root.Navigator>
