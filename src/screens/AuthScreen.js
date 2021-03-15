@@ -202,4 +202,4 @@ const mapStateToProps = ({ authentication }) => {
     };
 }
 
-export default connect(mapStateToProps)(AuthScreen);
+export default connect(mapStateToProps, { googleSignIn })(AuthScreen);

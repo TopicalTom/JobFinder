@@ -1,15 +1,43 @@
-import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Card, Text } from 'react-native-elements';
 
-const DeckScreen = () => {
+// Store
+import { connect } from 'react-redux';
+
+// Components
+import Deck from '../components/Deck';
+
+const DeckScreen = ({ results }) => {
+    const [ showDeck, setShowDeck ] = useState(true);
+
+    const handleEmptyState = () => {
+        setShowDeck(false);
+    }
+
     return (
         <SafeAreaView>
-            <Text>Deck Screen</Text>
+            {showDeck
+                ?   <Deck 
+                        data={results} 
+                        callback={handleEmptyState} 
+                    />
+                :   <Card>
+                        <Text>No more cards</Text>
+                    </Card>
+            }
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({});
 
-export default DeckScreen;
+const mapStateToProps = ({ jobs }) => {
+    console.log(jobs.results)
+    return { 
+        results: jobs.results,  
+    };
+}
+
+export default connect(mapStateToProps)(DeckScreen);
