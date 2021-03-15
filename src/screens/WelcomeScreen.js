@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, Icon, Text } from 'react-native-elements';
+import { Button, Text } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 
@@ -14,13 +14,13 @@ const WelcomeScreen = () => {
             </Text>
             <Button 
                 title="Get started" 
-                textStyle={styles.ctaTextStyle}
+                titleStyle={styles.ctaTextStyle}
                 buttonStyle={styles.ctaButtonStyle}
                 onPress={() => navigation.navigate('Auth')}
             />
             <Button 
                 title="Already have an account? Sign in" 
-                textStyle={styles.altTextStyle}
+                titleStyle={styles.altTextStyle}
                 buttonStyle={styles.altButtonStyle}
                 onPress={() => navigation.navigate('Auth')}
             />
@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
     },
     ctaTextStyle: {
         color: '#000',
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: '600',
     },
     altTextStyle: {
-        color: 'rgba(255,255,255,0.1)',
-        fontSize: 14,
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 12,
         fontWeight: '600',
     },
 });

@@ -3,14 +3,18 @@ import * as React from 'react';
 
 // Contexts
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
-// Stack
-import RootStack from './src/stacks/RootStack';
+// Router
+import RootRouter from './src/routers/RootRouter';
 
 const App = () => {
     return (
         <SafeAreaProvider>
-            <RootStack />
+            <Provider store={store}>
+                <RootRouter />
+            </Provider>
         </SafeAreaProvider>
     );
 };

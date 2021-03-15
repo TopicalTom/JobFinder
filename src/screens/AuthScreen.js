@@ -1,69 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { View, Image, StyleSheet, Alert } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet } from 'react-native';
 import { Button, Icon, Text } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-    GoogleSignin,
-    statusCodes,
-} from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { WEB_CLIENT_ID } from '@env';
 
-const AuthScreen = () => {
-    const [userInfo, setUserInfo] = useState(null);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [error, setError] = useState(null);
+// Store
+import { connect } from 'react-redux';
+import { googleSignIn } from '../actions';
 
-    const getCurrentUserInfo = async () => {
-        try {
-            const userInfo = await GoogleSignin.signInSilently();
-            setUserInfo(userInfo);
-        } catch (error) {
-            if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-                // when user hasn't signed in yet
-                Alert.alert('Please Sign in');
-                setIsLoggedIn(false);
-            } else {
-                Alert.alert('Something else went wrong... ', error.toString());
-                setIsLoggedIn(false);
-            };
-        };
-    };
-
-    const signOut = async () => {
-        try {
-            await GoogleSignin.revokeAccess();
-            await GoogleSignin.signOut();
-            setIsLoggedIn(false);
-        } catch (error) {
-            Alert.alert('Something else went wrong... ', error.toString());
-        };
-    };
-
-    const signIn = async () => {
-        try {
-            await GoogleSignin.hasPlayServices();
-            const userInfo = await GoogleSignin.signIn();
-            setUserInfo(userInfo);
-            setError(null);
-            setIsLoggedIn(true);
-        } catch (error) {
-            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-                // when user cancels sign in process,
-                console.log('Process Cancelled');
-            } else if (error.code === statusCodes.IN_PROGRESS) {
-                // when in progress already
-                Alert.alert('Process in progress');
-            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-                // when play services not available
-                Alert.alert('Play services are not available');
-            } else {
-                // some other error
-                Alert.alert('Something else went wrong... ', error.toString());
-                setError(error);
-            };
-        };
-    };
-
+const AuthScreen = ({ user }) => {
     const configureGoogleSign = (clientId) => {
         GoogleSignin.configure({
             webClientId: `${clientId}`,
@@ -77,10 +23,14 @@ const AuthScreen = () => {
   
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.subtitleStyle}>Let's get started</Text>
-            <Text h3 style={styles.titleStyle}>
+            <Text 
+                style={styles.subtitleStyle}>
+                Let's get started
+            </Text>
+            <Text h3 
+                style={styles.titleStyle}>
                 Select your sign up method
-                </Text>
+            </Text>
             <Button 
                 title="Sign in with Apple"
                 titleStyle={styles.platformTextStyle}
@@ -94,7 +44,7 @@ const AuthScreen = () => {
                         paddingLeft={6}
                     />
                 } 
-                onPress={() => signIn()}
+                onPress={() => googleSignIn()}
             />
             <Button 
                 title="Continue with Google"
@@ -109,7 +59,7 @@ const AuthScreen = () => {
                         paddingLeft={6}
                     />
                 } 
-                onPress={() => signIn()}
+                onPress={() => googleSignIn()}
             />
             <Button 
                 title="Continue with email"
@@ -124,7 +74,7 @@ const AuthScreen = () => {
                         paddingLeft={6}
                     />
                 } 
-                onPress={() => signIn()}
+                onPress={() => googleSignIn()}
             />
             <Button 
                 title="Use mobile number"
@@ -139,7 +89,7 @@ const AuthScreen = () => {
                         paddingLeft={6}
                     />
                 } 
-                onPress={() => signIn()}
+                onPress={() => googleSignIn()}
             />
             <Button 
                 title="Log in to existing account"
@@ -155,7 +105,7 @@ const AuthScreen = () => {
                         paddingLeft={2}
                     />
                 } 
-                onPress={() => signIn()}
+                onPress={() => googleSignOut()}
             />
         </SafeAreaView>
     );
@@ -246,21 +196,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AuthScreen;
+const mapStateToProps = ({ authentication }) => {
+    return { 
+        user: authentication.user,  
+    };
+}
 
-/*
-            <View style={styles.status}>
-                {isLoggedIn === false ? (
-                    <Text 
-                        style={styles.loggedinMessage}>
-                        You must sign in!
-                    </Text>
-                ) : (
-                    <Button 
-                        onPress={() => signOut()} 
-                        title='Sign out' 
-                        color='#332211' 
-                    />
-                )}
-            </View>
-*/
+export default connect(mapStateToProps)(AuthScreen);

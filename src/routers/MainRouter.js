@@ -2,8 +2,8 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements';
 
-// Stacks
-import ReviewStack from '../stacks/ReviewStack';
+// Router
+import ReviewRouter from './ReviewRouter';
 
 // Screens
 import MapScreen from '../screens/MapScreen';
@@ -11,7 +11,7 @@ import DeckScreen from '../screens/DeckScreen';
 
 const Tab = createBottomTabNavigator();
 
-const MainStack = () => {
+const MainRouter = () => {
     return (
         <Tab.Navigator 
             initialRouteName="Map"
@@ -52,7 +52,7 @@ const MainStack = () => {
             />
             <Tab.Screen 
                 name="Review" 
-                component={ReviewStack} 
+                component={ReviewRouter} 
                 options={() => ({ 
                     headerShown: true,
                     tabBarLabel: 'Review',
@@ -70,4 +70,4 @@ const MainStack = () => {
     );
 };
 
-export default MainStack;
+export default MainRouter;

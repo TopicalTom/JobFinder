@@ -9,7 +9,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 
-const ReviewStack = () => {
+const ReviewRouter = () => {
     const navigation = useNavigation();
 
     return (
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ReviewStack;
+export default ReviewRouter;
