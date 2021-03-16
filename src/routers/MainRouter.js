@@ -39,7 +39,7 @@ const MainRouter = () => {
                 component={DeckScreen} 
                 options={() => ({ 
                     headerShown: false,
-                    tabBarLabel: 'Find',
+                    tabBarLabel: 'Browse',
                     tabBarIcon: () => (
                         <Icon 
                             name="search" 

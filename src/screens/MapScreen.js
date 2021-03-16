@@ -52,9 +52,6 @@ const styles = StyleSheet.create({
     map: {
         flex: 1
     },
-    buttonStyle: {
-        backgroundColor: '#009688',
-    },
     buttonContainer: {
         position: 'absolute',
         left: 50,

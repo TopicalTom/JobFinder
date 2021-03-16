@@ -4,16 +4,20 @@ import * as React from 'react';
 // Contexts
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import store from './src/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import configureStore from './src/store';
 
 // Router
 import RootRouter from './src/routers/RootRouter';
 
 const App = () => {
+    const { persistor, store } = configureStore();
     return (
         <SafeAreaProvider>
             <Provider store={store}>
-                <RootRouter />
+                <PersistGate persistor={persistor}>
+                    <RootRouter />
+                </PersistGate>
             </Provider>
         </SafeAreaProvider>
     );
