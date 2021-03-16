@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
     RETRIEVE_JOBS, 
-    LIKE_JOB
+    LIKE_JOB,
+    CLEAR_LIKED_JOBS
 } from './types';
 
 const JOB_ROOT_URL = 'https://jobs.github.com/positions.json?'
@@ -24,5 +25,11 @@ export const likeJob = job => dispatch => {
     dispatch({
         type: LIKE_JOB, 
         payload: job
+    })
+};
+
+export const clearLikedJobs = () => dispatch => {
+    dispatch({
+        type: CLEAR_LIKED_JOBS 
     })
 };

@@ -26,7 +26,7 @@ const MainRouter = () => {
                     tabBarLabel: 'Map',
                     tabBarIcon: () => (
                         <Icon 
-                            name="home" 
+                            name="map" 
                             type="feather"
                             color='black' 
                             size={30} 
@@ -39,10 +39,10 @@ const MainRouter = () => {
                 component={DeckScreen} 
                 options={() => ({ 
                     headerShown: false,
-                    tabBarLabel: 'Deck',
+                    tabBarLabel: 'Find',
                     tabBarIcon: () => (
                         <Icon 
-                            name="user" 
+                            name="search" 
                             type="feather"
                             color='black' 
                             size={30}
@@ -55,10 +55,10 @@ const MainRouter = () => {
                 component={ReviewRouter} 
                 options={() => ({ 
                     headerShown: true,
-                    tabBarLabel: 'Review',
+                    tabBarLabel: 'Saved',
                     tabBarIcon: () => (
                         <Icon 
-                            name="plus-square" 
+                            name="heart" 
                             type="feather"
                             color='black' 
                             size={30} 

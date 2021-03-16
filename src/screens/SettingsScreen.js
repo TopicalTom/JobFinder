@@ -5,12 +5,16 @@ import { Button, Text } from 'react-native-elements';
 
 // Store
 import { connect } from 'react-redux';
-import { signOut } from '../actions';
+import { signOut, clearLikedJobs } from '../actions';
 
-const SettingsScreen = () => {
+const SettingsScreen = ({ signOut, clearLikedJobs}) => {
     return (
         <SafeAreaView>
             <Text>Setting Screen</Text>
+            <Button 
+                title="Clear liked jobs"
+                onPress={() => clearLikedJobs()}
+            />
             <Button 
                 title="Sign Out"
                 onPress={() => signOut()}
@@ -21,4 +25,4 @@ const SettingsScreen = () => {
 
 const styles = StyleSheet.create({});
 
-export default connect(null)(SettingsScreen);
+export default connect(null, { clearLikedJobs, signOut})(SettingsScreen);

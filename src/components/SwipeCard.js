@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Platform, Linking } from 'react-native';
-import { Card, Button, Text } from 'react-native-elements';
+import { StyleSheet, View, Platform } from 'react-native';
+import { Card, Text } from 'react-native-elements';
 import MapView from 'react-native-maps';
 
-const SwipeCard = ({ title, company, created_at, url }) => {
+const SwipeCard = ({ title, company, created_at }) => {
     return (
         <Card>
             <View style={{ height: 300 }}>
@@ -30,10 +30,6 @@ const SwipeCard = ({ title, company, created_at, url }) => {
             <Text style={{ marginBottom: 10 }}>
                 {created_at}
             </Text>
-            <Button 
-                title="View now" 
-                color='#03A9F4'
-                onPress={() => {Linking.openURL(`${url}`)}} />
         </Card>
     );
 };

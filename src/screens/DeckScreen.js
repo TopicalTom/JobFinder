@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Card, Text } from 'react-native-elements';
+import { Card, Text, Button } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 
 // Store
 import { connect } from 'react-redux';
@@ -11,10 +12,11 @@ import Deck from '../components/Deck';
 
 const DeckScreen = ({ results }) => {
     const [ showDeck, setShowDeck ] = useState(true);
+    const navigation = useNavigation();
 
     const handleEmptyState = () => {
         setShowDeck(false);
-    }
+    };
 
     return (
         <SafeAreaView>
@@ -25,6 +27,10 @@ const DeckScreen = ({ results }) => {
                     />
                 :   <Card>
                         <Text>No more jobs</Text>
+                        <Button 
+                            title="Back to Map"
+                            onPress={() => navigation.navigate('Map')}
+                        />
                     </Card>
             }
         </SafeAreaView>

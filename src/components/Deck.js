@@ -46,7 +46,6 @@ const Deck = ({ data = [], callback = () => {}, likeJob }) => {
     ).current;
 
     const onSwipeRight = item => {
-        console.log(item)
         likeJob(item);
     };
 
@@ -55,7 +54,7 @@ const Deck = ({ data = [], callback = () => {}, likeJob }) => {
     };
 
     const onSwipeComplete = (direction) => {
-        const item = data[deckIndex];
+        let item = data[deckIndex];
         direction === 'right' ? onSwipeRight(item) : onSwipeLeft(item);
         pan.setValue({ x: 0, y: 0 });
         setDeckIndex(deckIndex => deckIndex + 1);
