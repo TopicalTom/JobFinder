@@ -24,7 +24,7 @@ const DeckScreen = ({ results }) => {
                         callback={handleEmptyState} 
                     />
                 :   <Card>
-                        <Text>No more cards</Text>
+                        <Text>No more jobs</Text>
                     </Card>
             }
         </SafeAreaView>

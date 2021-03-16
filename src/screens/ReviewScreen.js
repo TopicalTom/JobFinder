@@ -2,14 +2,22 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const ReviewScreen = () => {
+// Store
+import { connect } from 'react-redux';
+
+const ReviewScreen = ({ likes }) => {
     return (
         <SafeAreaView>
-            <Text>Review Screen</Text>
+            <Text>{String(likes)}</Text>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({});
 
-export default ReviewScreen;
+const mapStateToProps = (state) => {
+    console.log(state)
+    return { likes: state.likes };
+}
+
+export default connect(mapStateToProps)(ReviewScreen);

@@ -8,10 +8,14 @@ import {
     UIManager 
 } from 'react-native';
 
+// Store
+import { connect } from 'react-redux';
+import { likeJob } from '../actions';
+
 // Components
 import SwipeCard from './SwipeCard';
 
-const Deck = ({ data = [], callback = () => {} }) => {
+const Deck = ({ data = [], callback = () => {}, likeJob }) => {
     const [ deckIndex, setDeckIndex ] = useState(0);
     
     const SCREEN_WIDTH = useWindowDimensions().width;
@@ -41,12 +45,13 @@ const Deck = ({ data = [], callback = () => {} }) => {
         })
     ).current;
 
-    const onSwipeRight = (item) => {
+    const onSwipeRight = item => {
         console.log(item)
+        likeJob(item);
     };
 
-    const onSwipeLeft = (item) => {
-        console.log(item)
+    const onSwipeLeft = item => {
+        //dislikeJob(item)
     };
 
     const onSwipeComplete = (direction) => {
@@ -118,7 +123,8 @@ const Deck = ({ data = [], callback = () => {} }) => {
                                 styles.cardStyle, 
                                 { 
                                     zIndex: cardIndex * -1, 
-                                    width: SCREEN_WIDTH 
+                                    width: SCREEN_WIDTH,
+                                    marginTop: 40 
                                 }
                             ]}
                             key={item.id}
@@ -135,7 +141,8 @@ const Deck = ({ data = [], callback = () => {} }) => {
                             { 
                                 zIndex: cardIndex * -1, 
                                 width: SCREEN_WIDTH,
-                                top: 10 * (cardIndex - deckIndex)
+                                top: 10 * (cardIndex - deckIndex),
+                                marginTop: 40 
                             }
                         ]}
                     >
@@ -153,4 +160,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Deck;
+export default connect(null, { likeJob })(Deck);
